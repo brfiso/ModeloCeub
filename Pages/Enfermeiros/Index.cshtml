@@ -1,0 +1,77 @@
+﻿@page "/Enfermeiros"
+@model ModeloCeub.Pages.Enfermeiros.IndexModel
+@{
+    ViewData["Title"] = "Enfermeiros";
+}
+
+<div class="d-flex justify-content-between">
+    <h1>Enfermeiros</h1>
+    <div>
+        <button class="btn btn-outline-secondary" id="btnFormulario" onclick="btnExibirFormulario()">
+            <i class="fa fa-plus"></i>
+        </button>
+        <button class="btn btn-outline-secondary" id="btnLista" onclick="btnExibirListaClick()" style="display:none">
+            <i class="fa fa-arrow-left"></i>
+        </button>
+    </div>
+</div>
+<hr />
+<div id="divLista">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>CRE</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model.Enfermeiros)
+            {
+                <tr>
+                    <td>@usuario.Usuario.Nome</td>
+                    <td>@usuario.Usuario.Email</td>
+                    <td>@usuario.Usuario.Telefone</td>
+                    <td>@usuario.Cre</td>
+                    <td>
+                        <button class="btn mr-1"><i class="fa fa-edit"></i></button>
+                        <button class="btn mr-1"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div id="divFormulario" style="display:none;">
+    <div class="my-4">
+        <h4>Manter Enfermeiro</h4>
+        <hr />
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Enfermeiro.Usuario.Nome"></label>
+                <input type="text" asp-for="Enfermeiro.Usuario.Nome" class="form-control" />
+                <span class="text-danger" asp-validation-for="Enfermeiro.Usuario.Nome"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enfermeiro.Usuario.Email"></label>
+                <input type="text" asp-for="Enfermeiro.Usuario.Email" class="form-control" />
+                <span class="text-danger" asp-validation-for="Enfermeiro.Usuario.Email"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enfermeiro.Usuario.Telefone"></label>
+                <input type="text" asp-for="Enfermeiro.Usuario.Telefone" class="form-control" />
+                <span class="text-danger" asp-validation-for="Enfermeiro.Usuario.Telefone"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enfermeiro.Cre"></label>
+                <input type="text" asp-for="Enfermeiro.Cre" class="form-control" />
+                <span class="text-danger" asp-validation-for="Enfermeiro.Cre"></span>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
